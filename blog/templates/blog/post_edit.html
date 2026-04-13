@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head><title>Новий пост</title></head>
+<body style="font-family: Arial; max-width: 600px; margin: 0 auto; padding: 20px;">
+    <h2>Додати новий запис у блог</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }} <button type="submit" style="padding: 10px 20px; background: blue; color: white;">Зберегти</button>
+    </form>
+</body>
+</html>

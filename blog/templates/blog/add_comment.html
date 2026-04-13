@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>Додати коментар</title></head>
+<body style="font-family: Arial; max-width: 600px; margin: 0 auto; padding: 20px;">
+    <h2>Написати коментар</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="padding: 10px 20px; background: green; color: white;">Відправити</button>
+    </form>
+</body>
+</html>

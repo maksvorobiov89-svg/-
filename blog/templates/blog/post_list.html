@@ -4,16 +4,32 @@
     <meta charset="UTF-8">
     <title>Блог</title>
 </head>
-<body>
+<body style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px;">
     <h1>Ласкаво просимо до мого блогу!</h1>
 
     {% for post in posts %}
-        <article style="border: 1px solid #ccc; padding: 15px; margin-bottom: 20px;">
-            <h2>{{ post.title }}</h2>
-            <p><i>Категорія: {{ post.category }} | Опубліковано: {{ post.pub_date|date:"d M Y" }}</i></p>
+        <article style="border: 1px solid #ccc; padding: 20px; margin-bottom: 30px; border-radius: 8px;">
+            <h2 style="margin-top: 0;">{{ post.title }}</h2>
+            <p style="color: #666; font-size: 0.9em;">
+                <i>Категорія: {{ post.category }} | Опубліковано: {{ post.pub_date|date:"d M Y" }}</i>
+            </p>
             <p>{{ post.content }}</p>
             <p><strong>Автор: {{ post.author }}</strong></p>
-        </article>
+
+            <div style="margin-top: 20px; padding-top: 15px; border-top: 2px dashed #eee;">
+                <h3>Коментарі:</h3>
+
+                {% for comment in post.comments.all %}
+                    <div style="background-color: #f9f9f9; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
+                        <strong>{{ comment.author_name }}</strong>
+                        <small style="color: #888;">({{ comment.created_date|date:"d.m.Y H:i" }})</small>
+                        <p style="margin: 5px 0 0 0;">{{ comment.content }}</p>
+                    </div>
+                {% empty %}
+                    <p style="color: #999; font-style: italic;">До цього посту ще немає коментарів.</p>
+                {% endfor %}
+            </div>
+            </article>
     {% empty %}
         <p>Поки що немає жодного запису.</p>
     {% endfor %}
